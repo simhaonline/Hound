@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/lukajose/GoSpy/server/echo"
+	echo"github.com/lukajose/GoSpy/proto/echo"
 	"net"
 	"fmt"
+	"context"
 	grpc "google.golang.org/grpc"
 )
 
