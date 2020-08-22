@@ -10,8 +10,8 @@ import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
+	// codes "google.golang.org/grpc/codes"
+	// status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -260,16 +260,16 @@ func (c *echoServerClient) Echo(ctx context.Context, in *EchoRequest, opts ...gr
 
 // EchoServerServer is the server API for EchoServer service.
 type EchoServerServer interface {
-	Echo(context.Context, *EchoRequest) (*EchoRequest, error)
+	Echo(context.Context, *EchoRequest) (*EchoResponse, error)
 }
 
 // UnimplementedEchoServerServer can be embedded to have forward compatible implementations.
-type UnimplementedEchoServerServer struct {
-}
+// type UnimplementedEchoServerServer struct {
+// }
 
-func (*UnimplementedEchoServerServer) Echo(context.Context, *EchoRequest) (*EchoRequest, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Echo not implemented")
-}
+// func (*UnimplementedEchoServerServer) Echo(context.Context, *EchoRequest) (*EchoRequest, error) {
+// 	return nil, status.Errorf(codes.Unimplemented, "method Echo not implemented")
+// }
 
 func RegisterEchoServerServer(s *grpc.Server, srv EchoServerServer) {
 	s.RegisterService(&_EchoServer_serviceDesc, srv)
