@@ -12,18 +12,18 @@ const Sidebar = ({width,CloseBar}) => {
                 {width > 80 && (
                 <Fragment>
                     <a href="javascript:void(0)" className="closebtn" onClick={CloseBar} style={{borderBottom:"none"}}>x</a>
-                    <span className="proton" style={{color:"white" ,fontSize:"30px"}}><i class="fas fa-atom"></i> Proton</span>
-                    <Link to='/explore/market'>Explore Market</Link>
+                    <span className="proton" style={{color:"white" ,fontSize:"30px"}}><i class="fas fa-atom"></i> Photon</span>
+                    <Link to='/explore/market' className='hover-link'>Explore Market</Link>
                 </Fragment>)}
                 {width <= 80 && (<Fragment>
-                    <div className='icon-hover' style={{color:'white'}}>
-                        <Layers style={{margin:'10px',marginLeft:'15px'}}/>
+                    <div className='icon-sidebar-background' tabIndex="1">
+                        <Link to='/explore/market'><Layers className='icon-sidebar'/> </Link>
                     </div>
-                    <div className='icon-hover' style={{background:'white',color:'black'}}>
-                        <Map style={{margin:'10px',marginLeft:'15px',marginTop:'20px'}}/>
+                    <div className='icon-sidebar-background' tabIndex="2">
+                        <Link to='/search/market'><Map className='icon-sidebar'/></Link>
                     </div>
-                    <div className='icon-hover' style={{color:'white'}}>
-                        <Compass style={{margin:'10px',marginLeft:'15px',marginTop:'20px'}}/>
+                    <div className='icon-sidebar-background' tabIndex="3">
+                        <Link to='/network/market'><Compass className='icon-sidebar'/></Link>
                     </div>
                 </Fragment>)}
             </div>
