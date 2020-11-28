@@ -5,20 +5,26 @@ import {getUser} from '../actions/userActions'
 function MarketMapPage({user: {userid,loading}, getUser}) {
     
     useEffect(() => {
-        getUser()
+        console.log(getUser())
     }, [])
     
-    
-    const data = [
-            {"circle":{"coordinates":[-41.28,174.77]}},
-            {"circle":{"coordinates":[-41.29,174.76]}},
-            {"circle":{"coordinates":[-41.30,174.79]}},
-            {"circle":{"coordinates":[-41.27,174.80]}},
-            {"circle":{"coordinates":[-41.29,174.78]}}
-        ]
+    const randomFloat = (min,max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    const createData = () => {
+        let data = []
+        for( let i = 0; i < 100; i++) {
+            const node = {"circle":{"coordinates":[(-2*randomFloat(0,1) + 1)*randomFloat(0,90),(-2*randomFloat(0,1) + 1) *randomFloat(0,180)]}}
+            data.push(node)
+        }
+        return data
+
+    }
+
     return (
         <body>
-            <MarketMap data={data}/>
+            <MarketMap data={createData()}/>
         </body>
 
     )

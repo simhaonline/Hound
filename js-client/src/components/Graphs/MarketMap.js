@@ -19,7 +19,9 @@ const MarketMap = ({data}) => {
 }
 
 const createMarketMap = (data) => {
-    var map = L.map('marketmap').setView([-41.2858, 174.7868], 13);
+    var map = L.map('marketmap', {
+        preferCanvas:true
+    }).setView([-41.2858, 174.7868], 13);
     var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
         L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

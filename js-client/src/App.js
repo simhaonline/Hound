@@ -22,6 +22,8 @@ function App() {
           <Header  OpenSideBar={OpenSideBar}/>
           <div className='container'>
           <Sidebar CloseBar={CloseBar} width={width}/>
+          {/* {alert.message &&
+            <div className={`alert-${alert.type}`}>{alert.message}</div>} */}
           <Switch>
               <div className='content'>
                 <Route exact path='/' component={MarketmapPage}/>

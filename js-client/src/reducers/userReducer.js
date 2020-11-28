@@ -1,4 +1,7 @@
-import {GET_USER,SET_LOADING,USER_ERROR} from '../actions/types'
+import {GET_USER,
+    SET_LOADING,
+    USER_ERROR
+} from '../actions/types'
 
 
 const initialState = {

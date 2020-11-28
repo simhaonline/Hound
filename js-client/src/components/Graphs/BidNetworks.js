@@ -109,7 +109,7 @@ const graphNetworks = () => {
     var link_force =  d3.forceLink(links_data)
                         .id(function(d) { return d.name; });            
         
-    var charge_force = d3.forceManyBody().strength(-100); 
+    var charge_force = d3.forceManyBody().strength(-500); 
 
     var center_force = d3.forceCenter(width / 2, height / 2);  
                     

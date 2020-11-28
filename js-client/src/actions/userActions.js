@@ -1,9 +1,11 @@
-import {GET_USER,SET_LOADING,USER_ERROR} from './types'
+import {GET_USER,
+        SET_LOADING,
+        USER_ERROR
+    } from './types'
 
 export const getUser = () => async (dispatch) => {
         try {
             setLoading()
-            console.log('dispatches!!!! =>')
             const data = {userid:'banana'}
             dispatch({
                 type:GET_USER,
