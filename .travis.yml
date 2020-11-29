@@ -1,10 +1,11 @@
-language: node 
+language: node_js 
 sudo: required
 
 services:
   - docker
-
+git:
+  symlinks: true
 before_install:
-  - docker build -t lukajose/photon -f /js-client/Dockerfile.dev .
+  - docker build -t lukajose/photon -f ./js-client/Dockerfile.dev .
 script:
   - docker run -e CI=true USERNAME/photon npm run test
