@@ -1,5 +1,2 @@
-node_modules
-build
+/js-client/node_modules
 .dockerignore
-Dockerfile
-Dockerfile.prod
