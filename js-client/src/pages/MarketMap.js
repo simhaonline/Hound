@@ -5,7 +5,7 @@ import {getUser} from '../actions/userActions'
 function MarketMapPage({user: {userid,loading}, getUser}) {
     
     useEffect(() => {
-        console.log(getUser())
+        // console.log(getUser())
     }, [])
     
     const randomFloat = (min,max) => {
