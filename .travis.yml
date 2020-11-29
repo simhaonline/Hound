@@ -8,4 +8,4 @@ git:
 before_install:
   - docker build -t lukajose/photon -f Dockerfile.dev .
 script:
-  - docker run -e CI=true USERNAME/photon npm run test
+  - docker run -e CI=true lukajose/photon npm run test
