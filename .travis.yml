@@ -7,5 +7,3 @@ git:
   symlinks: true
 before_install:
   - docker build -t lukajose/photon -f Dockerfile.dev .
-script:
-  - docker run -e CI=true USERNAME/photon npm run test
