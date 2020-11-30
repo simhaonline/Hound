@@ -9,3 +9,14 @@ before_install:
   - docker build -t lukajose/photon -f Dockerfile.dev .
 script:
   - docker run -e CI=true lukajose/photon npm run test
+# deploy:  
+#   provider: elasticbeanstalk
+#   region: "us-west-2"
+#   app: "photon"
+#   env: "Photon-env"
+#   bucket_name: "generated-bucket-name-copy-from-aws"
+#   bucket_path: "photon"
+#   on:
+#     branch: master
+#   access_key_id: "$AWS_ACCESS_KEY"
+#   secret_access_key: "$AWS_SECRET_KEY"
