@@ -6,6 +6,7 @@ import MarketmapPage from './pages/MarketMap'
 import BidPage from './pages/BidPage'
 import {Provider} from'react-redux'
 import store from './Store'
+// import Login from './pages/Login'
 
 function App() {
   const [width,SetWidth] = useState(60);
@@ -14,10 +15,15 @@ function App() {
     }
     const CloseBar = () => {
         SetWidth(60);
-
     }
+    const [auth,setAuth] = useState(false)
   return (
     <Provider store={store}>
+        {/* {auth && 
+        <Router>
+           <Route exact path='/' component={Login}/>
+        </Router>
+        } */}
         <Router>
           <Header  OpenSideBar={OpenSideBar}/>
           <div className='container'>
@@ -33,6 +39,7 @@ function App() {
           </div>
         </Router>
       </Provider>
+    
   );
 }
 

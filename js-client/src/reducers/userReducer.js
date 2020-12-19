@@ -1,4 +1,5 @@
-import {GET_USER,
+import {
+    GET_USER,
     SET_LOADING,
     USER_ERROR
 } from '../actions/types'
