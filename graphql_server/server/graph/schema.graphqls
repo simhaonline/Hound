@@ -1,0 +1,22 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+# Same as specified in rest server
+type User {
+  id: ID
+  firstName: String!
+  lastName: String!
+  email: String!
+  hashedPassword: String!
+  permission: Int!
+}
+
+# Leave queries empty for now
+type Query {
+  
+}
+
+# Leave mutations empty for now
+type Mutation {
+}
