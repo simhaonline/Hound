@@ -14,9 +14,10 @@ type User {
 
 # Leave queries empty for now
 type Query {
-  
+  users: [User!]!
 }
 
 # Leave mutations empty for now
-type Mutation {
-}
+# type Mutation {
+
+# }
