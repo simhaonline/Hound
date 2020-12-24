@@ -6,6 +6,7 @@ import MarketmapPage from './pages/MarketMap'
 import BidPage from './pages/BidPage'
 import {Provider} from'react-redux'
 import store from './Store'
+import Profile from './pages/Profile'
 // import Login from './pages/Login'
 
 function App() {
@@ -30,12 +31,13 @@ function App() {
           <Sidebar CloseBar={CloseBar} width={width}/>
           {/* {alert.message &&
             <div className={`alert-${alert.type}`}>{alert.message}</div>} */}
-          <Switch>
-              <div className='content'>
-                <Route exact path='/' component={MarketmapPage}/>
-                <Route exact path='/network/market' component={BidPage}/>
-              </div>
-          </Switch>
+            <Switch>
+                <div className='content'>
+                  <Route exact path='/' component={MarketmapPage}/>
+                  <Route exact path='/network/market' component={BidPage}/>
+                  <Route exact path='/profile' component={Profile}/>
+                </div>
+            </Switch>
           </div>
         </Router>
       </Provider>
