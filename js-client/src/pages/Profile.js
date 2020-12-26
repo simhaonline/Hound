@@ -2,14 +2,8 @@ import React from 'react'
 import Image from "../images/user.png"
 import '../CSS/profile.css'
 function Profile() {
+    
     return (
-        // <div id={"profile"}>
-        //     <img src={Image}/>
-        //     <div id={"profile_name"}>Timmy </div>
-        //     <div>Property 1</div>
-        //     <div>Property 2</div>
-        //     <div>Property 3</div> 
-        // </div>
         <div class="row" id={"container-profile"}>
             <div className={"column"}>
                 <img src={Image} id={"profile_image"}/>
@@ -65,6 +59,7 @@ function Profile() {
                 </div>
             </div>
       </div>
+      
     )
 
 }

@@ -8,8 +8,7 @@
     width: 100%;
     opacity: 0.8;
     height:70px;
-    z-index:100000000;
-    
+    z-index:102;
   }
 
 .navbar ul {
