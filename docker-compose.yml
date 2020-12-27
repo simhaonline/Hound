@@ -11,6 +11,20 @@ services:
       - "5432"
     volumes:
       - ./rest-server/pg/db.sql:/docker-entrypoint-initdb.d/db.sql
+  chat_service:
+    build:
+      dockerfile: Dockerfile
+      context: './rest-server/gorilla'
+    container_name: 'chat_service'
+    ports:
+      - 8081:8081
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: '.'
+    container_name: 'frontend'
+    ports:
+      - 80:80 
   # redis:
   #   image: 'redis:latest'
   # server:

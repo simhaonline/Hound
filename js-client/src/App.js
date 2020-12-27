@@ -10,6 +10,8 @@ import Profile from './pages/Profile'
 import 'react-toastify/dist/ReactToastify.css';
 // import Login from './pages/Login'
 import Alert from './components/utils/Alert'
+import Chat from './pages/Chat'
+import './App.css'
 
 function App() {
   const [width,SetWidth] = useState(60);
@@ -33,17 +35,19 @@ function App() {
         <Header  OpenSideBar={OpenSideBar}/>
         <div className='container'>
           <Sidebar CloseBar={CloseBar} width={width}/>
-          <Switch>
-              <div className='content'>
-                <Route exact path='/' component={MarketmapPage}/>
-                <Route exact path='/network/market' component={BidPage}/>
-                <Route exact path='/profile' component={Profile}/>
-              </div>
-          </Switch>
+          {/* <div className={"content"}> */}
+            <Switch>
+                <div className='content'>
+                  <Route exact path='/' component={MarketmapPage}/>
+                  <Route exact path='/network/market' component={BidPage}/>
+                  <Route exact path='/profile' component={Profile}/>
+                  <Route exact path='/chat' component={Chat}/>
+                </div>
+            </Switch>
+          {/* </div> */}
         </div>
       </Router>
     </Provider>
-    
   );
 }
 

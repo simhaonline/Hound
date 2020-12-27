@@ -1,3 +1,5 @@
+
+
 .navbar {
     display: flex;
     background: rgb(248, 92, 81);
@@ -6,9 +8,10 @@
     align-items: center;
     padding: 0 30px;
     width: 100%;
-    opacity: 0.8;
+    opacity: 1;
     height:70px;
     z-index:102;
+    position:fixed;
   }
 
 .navbar ul {
@@ -35,3 +38,7 @@
     display:none;
   }
 }
+.content {
+  padding-top: 70px;
+}
+
