@@ -32,12 +32,12 @@ function App() {
         </Router>
         } */}    
       <Router>
-        <Header  OpenSideBar={OpenSideBar}/>
+        <Header  OpenSideBar={OpenSideBar} CloseBar={CloseBar}/>
         <div className='container'>
           <Sidebar CloseBar={CloseBar} width={width}/>
           {/* <div className={"content"}> */}
             <Switch>
-                <div className='content'>
+                <div className={'content'}>
                   <Route exact path='/' component={MarketmapPage}/>
                   <Route exact path='/network/market' component={BidPage}/>
                   <Route exact path='/profile' component={Profile}/>

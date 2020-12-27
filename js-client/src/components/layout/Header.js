@@ -6,7 +6,7 @@ const Header = ({OpenSideBar}) => {
     <header className="header">
       <div className="navbar" >
           <h1>
-          {(<button class='openbtn' onClick={OpenSideBar}> ☰ </button>)}
+          {(<button className={'openbtn'} onClick={OpenSideBar}> ☰ </button>)}
             <span className="proton"><i class="fas fa-atom"></i> Photon</span>
           </h1>
           <nav>

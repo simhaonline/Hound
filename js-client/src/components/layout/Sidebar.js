@@ -11,7 +11,7 @@ const Sidebar = ({width,CloseBar}) => {
             <div id="mySidebar" className="sidebar" style={{width}}>
                 {width > 80 && (
                 <Fragment>
-                    <a href="javascript:void(0)" className="closebtn" onClick={CloseBar} style={{borderBottom:"none"}}>x</a>
+                    <a className={"closebtn"} onClick={CloseBar} style={{borderBottom:"none"}}>x</a>
                     <span className="photon" style={{color:"white" ,fontSize:"30px"}}><i class="fas fa-atom"></i> Photon</span>
                     <Link to='/explore/market' className='hover-link'>Explore Market</Link>
                 </Fragment>)}
