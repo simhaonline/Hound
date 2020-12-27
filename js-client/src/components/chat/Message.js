@@ -10,7 +10,6 @@ function Message({type = "",data ="",time}) {
     } 
     return (
         <div className={`container-chat ${type}`}>
-            <img src={Image} alt="Avatar" className={position}/>
             <p>{data}</p>
             <span className={`time-${timeposition}`}>{prettyDate(time)}</span>
         </div>
