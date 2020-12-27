@@ -13,7 +13,7 @@
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px;
     overflow:auto;
 }
 /* Style images */
@@ -63,14 +63,14 @@
     width: 100%;
     display: block;
     margin: auto;
-    padding-left: 10px;
     position: fixed;
     bottom:0%;
+    padding: 10px 10px;
+    background:rgb(22, 22, 22);
 }
 
 .input-chat input {
-    padding: 10px 10px;
-    padding-left: 10px;
+    padding: 10px 10px 10px 10px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
@@ -78,3 +78,9 @@
     width: 96%;
     box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 630px) {
+    .navbar .proton {
+      display:none;
+    }
+  }

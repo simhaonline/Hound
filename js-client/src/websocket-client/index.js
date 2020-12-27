@@ -1,5 +1,5 @@
 // api/index.js
-var socket = new WebSocket("ws://localhost:8081/ws");
+var socket = new WebSocket("ws://192.168.1.122:8081/ws");
 
 let connect = (setID) => {
   console.log("Attempting Connection...");

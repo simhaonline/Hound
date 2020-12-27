@@ -14,7 +14,6 @@ const Header = ({OpenSideBar}) => {
               <li><Link to='/' style={{textDecoration:"none"}}><i class="fas fa-home" style={{paddingRight:"5px"}}></i>Home</Link></li>
               <li><Link to='/profile' style={{textDecoration:"none"}}><i class="fas fa-user" style={{paddingRight:"5px"}}></i>Profile</Link></li>
               <li><Link to='/profile' style={{textDecoration:"none"}}><i class="fas fa-sign-out-alt" style={{paddingRight:"5px"}}></i>Logout</Link></li>
-              
             </ul>
           </nav>
       </div>
