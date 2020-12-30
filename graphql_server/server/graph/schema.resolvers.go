@@ -11,10 +11,13 @@ import (
 
 	"github.com/ConDai/simpleGraphQL/graph/generated"
 	"github.com/ConDai/simpleGraphQL/graph/model"
+	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastName *string, password *string, email *string) (*string, error) {
+func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastName *string, password *string, email *string) (*model.Status, error) {
+	var status model.Status
+
 	emailResults, err := r.Conn.Query("SELECT email FROM users WHERE email = $1", *email)
 	if err != nil {
 		return nil, errors.New("Failed to fetch emails from table users")
@@ -23,14 +26,15 @@ func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastNa
 	defer emailResults.Close()
 
 	if emailResults.Next() {
-		return nil, errors.New("Email is already registered")
+		status = model.StatusFailed
+		return &status, errors.New("Email is already registered")
 	}
 
 	bytes, err := bcrypt.GenerateFromPassword([]byte(*password), 14)
 	hashedPassword := string(bytes)
-	hashedPassword = "123"
 	if err != nil {
-		return nil, errors.New("Failed to generated hashed password")
+		status = model.StatusFailed
+		return &status, errors.New("Failed to generated hashed password")
 	}
 
 	newUserSQL := `INSERT INTO users (first_name, last_name,email,hash_password,perm_type,time_registered) 
@@ -39,17 +43,59 @@ func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastNa
 	_, err = r.Conn.Exec(newUserSQL, *firstName, *lastName, *email, hashedPassword, 1, time.Now())
 
 	if err != nil {
-		return nil, errors.New("Failed to create new user")
+		status = model.StatusFailed
+		return &status, errors.New("Failed to create new user")
 	}
 
-	return nil, nil
+	status = model.StatusSuccess
+	return &status, nil
 }
 
 func (r *mutationResolver) Login(ctx context.Context, email *string, password *string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented"))
+
+	passwordResult, err := r.Conn.Query("SELECT u_id,first_name,last_name,hash_password FROM users WHERE email = $1", *email)
+
+	// Validate the user
+	if !passwordResult.Next() {
+		return nil, errors.New("User with email does not exist")
+	}
+	var uid int
+	var firstName string
+	var lastName string
+	var hashedPassword string
+
+	if err := passwordResult.Scan(&uid, &firstName, &lastName, &hashedPassword); err != nil {
+		return nil, err
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(*password))
+	if err != nil {
+		return nil, errors.New("Incorrect password")
+	}
+
+	// Create a new token
+	token, err := uuid.NewV4()
+	if err != nil {
+		return nil, errors.New("Failed to generate token")
+	}
+
+	newSessionSQL := `INSERT INTO userssessions (u_id, tokens,token_issue) 
+										VALUES ($1,$2,$3)`
+	_, err = r.Conn.Exec(newSessionSQL, uid, token, time.Now())
+	if err != nil {
+		return nil, errors.New("Failed to create session")
+	}
+
+	user := model.User{
+		FirstName: firstName,
+		LastName:  lastName,
+		Email:     *email,
+		Token:     token.String(),
+	}
+	return &user, nil
 }
 
-func (r *mutationResolver) Logout(ctx context.Context, token *string) (*string, error) {
+func (r *mutationResolver) Logout(ctx context.Context, token *string) (*model.Status, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
@@ -69,18 +115,6 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 		users = append(users, &u)
 	}
 	return users, nil
-
-	// var id string = "1"
-	// user := model.User{
-	// 	ID:             &id,
-	// 	FirstName:      "Luka",
-	// 	LastName:       "Gamulin",
-	// 	Email:          "email",
-	// 	HashedPassword: "Password",
-	// 	Permission:     0,
-	// }
-	// users = append(users, &user)
-	// return users, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.

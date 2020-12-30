@@ -2,6 +2,11 @@
 #
 # https://gqlgen.com/getting-started/
 
+enum Status{
+  SUCCESS
+  FAILED
+}
+
 # Same as specified in rest server
 type User {
   firstName: String!
@@ -17,7 +22,7 @@ type Query {
 scalar Void 
 
 type Mutation {
-  signUp(firstName:String,lastName: String, password:String,email:String): Void
+  signUp(firstName:String,lastName: String, password:String,email:String): Status
   login(email: String, password: String): User
-  logout(token:String):Void
+  logout(token:String): Status
 }

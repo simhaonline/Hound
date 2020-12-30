@@ -62,9 +62,9 @@ type ComplexityRoot struct {
 }
 
 type MutationResolver interface {
-	SignUp(ctx context.Context, firstName *string, lastName *string, password *string, email *string) (*string, error)
+	SignUp(ctx context.Context, firstName *string, lastName *string, password *string, email *string) (*model.Status, error)
 	Login(ctx context.Context, email *string, password *string) (*model.User, error)
-	Logout(ctx context.Context, token *string) (*string, error)
+	Logout(ctx context.Context, token *string) (*model.Status, error)
 }
 type QueryResolver interface {
 	Users(ctx context.Context) ([]*model.User, error)
@@ -224,6 +224,11 @@ var sources = []*ast.Source{
 #
 # https://gqlgen.com/getting-started/
 
+enum Status{
+  SUCCESS
+  FAILED
+}
+
 # Same as specified in rest server
 type User {
   firstName: String!
@@ -239,9 +244,9 @@ type Query {
 scalar Void 
 
 type Mutation {
-  signUp(firstName:String,lastName: String, password:String,email:String): Void
+  signUp(firstName:String,lastName: String, password:String,email:String): Status
   login(email: String, password: String): User
-  logout(token:String):Void
+  logout(token:String):Status
 }`, BuiltIn: false},
 }
 var parsedSchema = gqlparser.MustLoadSchema(sources...)
@@ -418,9 +423,9 @@ func (ec *executionContext) _Mutation_signUp(ctx context.Context, field graphql.
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(*model.Status)
 	fc.Result = res
-	return ec.marshalOVoid2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalOStatus2ᚖgithubᚗcomᚋConDaiᚋsimpleGraphQLᚋgraphᚋmodelᚐStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_login(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -496,9 +501,9 @@ func (ec *executionContext) _Mutation_logout(ctx context.Context, field graphql.
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(*model.Status)
 	fc.Result = res
-	return ec.marshalOVoid2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalOStatus2ᚖgithubᚗcomᚋConDaiᚋsimpleGraphQLᚋgraphᚋmodelᚐStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_users(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2535,6 +2540,22 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return graphql.MarshalBoolean(*v)
 }
 
+func (ec *executionContext) unmarshalOStatus2ᚖgithubᚗcomᚋConDaiᚋsimpleGraphQLᚋgraphᚋmodelᚐStatus(ctx context.Context, v interface{}) (*model.Status, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(model.Status)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOStatus2ᚖgithubᚗcomᚋConDaiᚋsimpleGraphQLᚋgraphᚋmodelᚐStatus(ctx context.Context, sel ast.SelectionSet, v *model.Status) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
+}
+
 func (ec *executionContext) unmarshalOString2string(ctx context.Context, v interface{}) (string, error) {
 	res, err := graphql.UnmarshalString(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -2564,21 +2585,6 @@ func (ec *executionContext) marshalOUser2ᚖgithubᚗcomᚋConDaiᚋsimpleGraphQ
 		return graphql.Null
 	}
 	return ec._User(ctx, sel, v)
-}
-
-func (ec *executionContext) unmarshalOVoid2ᚖstring(ctx context.Context, v interface{}) (*string, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := graphql.UnmarshalString(v)
-	return &res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalOVoid2ᚖstring(ctx context.Context, sel ast.SelectionSet, v *string) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return graphql.MarshalString(*v)
 }
 
 func (ec *executionContext) marshalO__EnumValue2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐEnumValueᚄ(ctx context.Context, sel ast.SelectionSet, v []introspection.EnumValue) graphql.Marshaler {
