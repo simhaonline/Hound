@@ -4,20 +4,20 @@
 
 # Same as specified in rest server
 type User {
-  id: ID
   firstName: String!
   lastName: String!
   email: String!
-  hashedPassword: String!
-  permission: Int!
+  token: String!
 }
 
-# Leave queries empty for now
 type Query {
   users: [User!]!
 }
 
-# Leave mutations empty for now
-# type Mutation {
+scalar Void 
 
-# }
+type Mutation {
+  signUp(firstName:String,lastName: String, password:String,email:String): Void
+  login(email: String, password: String): User
+  logout(token:String):Void
+}
