@@ -7,6 +7,7 @@ import BidPage from './pages/BidPage'
 import {Provider} from'react-redux'
 import store from './Store'
 import Profile from './pages/Profile'
+import DashBoard from './pages/DashBoard'
 import 'react-toastify/dist/ReactToastify.css';
 // import Login from './pages/Login'
 import Alert from './components/utils/Alert'
@@ -42,6 +43,7 @@ function App() {
                   <Route exact path='/network/market' component={BidPage}/>
                   <Route exact path='/profile' component={Profile}/>
                   <Route exact path='/chat' component={Chat}/>
+                  <Route exact path='/post' component={DashBoard}/>
                 </div>
             </Switch>
           {/* </div> */}
