@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Search} from 'react-feather'
-
+import ModalBox from '../utils/ModalBox'
+import Form from '../layout/Form'
+import Dropdown from '../utils/Dropdown';
 function SearchDashBoard() {
+    const [showModal, setShowModal] = useState(false)
+    const [dropdownBed,setDropDownBed] = useState(undefined)
     return (
     <div className={"search-container"}>
         <div className={"search-input"}>
@@ -17,6 +21,8 @@ function SearchDashBoard() {
         </div>
         <div className={"flex-row"}>
             <div className={"button-containers"}>
+                <ModalBox show={showModal} setShow={setShowModal} component={Form}/>
+                <button onClick={()=> setShowModal(true)} style={{"backgroundColor":"#f1f1f1"}}>Offer</button>
                 <button>Lease</button>
                 <button>Auction</button>
                 <button>Sell</button>
@@ -29,7 +35,7 @@ function SearchDashBoard() {
                     <div className={"flex-column-item"}>
                         <div className={"custom-select"}>
                             <select>
-                                <option value="Any-Type">Property type</option>
+                                <option value="Any-Type" style={{"color":"red"}}>Property type</option>
                                 <option value="house">House</option>
                                 <option value="apartment">Apartment & Unit</option>
                                 <option value="retirement">Retirement Living</option>
@@ -39,9 +45,12 @@ function SearchDashBoard() {
                         </div>
                     </div>
                     <div className={"flex-column-item"}>
-                        <select>
-                            <option value="Any-Bed">Beds</option>
-                        </select>
+                    <Dropdown placeholder={"Beds"} 
+                        value={dropdownBed} 
+                        onChange={v => setDropDownBed(v)}
+                        options={["1","2","3","4","5","6","7","8","8+"]}
+                        title={"Property type"}            
+                    />
                     </div>
                     <div className={"flex-column-item"}>
                         <select>

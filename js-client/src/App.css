@@ -87,9 +87,64 @@ input[type=text]:focus{
 /* Select css */
 
 
-.custom-select {
-    overflow: hidden;
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
+
+.dropdown-toggler {
+  width: 200px;
+  background:rgb( 22, 22, 22);
+  padding: 6px 12px;
+  color: #f1f1f1;
+  border: 0px solid #ececec;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: -1;
+  text-align: left;
+}
+
+.dropdown-toggler:active {
+  opacity: 0.5;
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding-left: 5px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.dropdown-menu-item {
+  width: 220px;
+  background: rgb(22, 22, 22);
+  padding: 6px 12px;
+  color: #f1f1f1;
+  border: 1px solid #333333;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.dropdown-menu-item::hover {
+  background: rgb(248, 92, 81);
+}
+
+.dropdown-menu-item button {
+  padding:0px;
+  margin:0px;
+}
+
+.dropdown-menu-item:active {
+  opacity: 0.5;
+}
+
 
 
 
@@ -97,5 +152,73 @@ input[type=text]:focus{
 .custom-select select {
     box-shadow: none;
 }
+.dropdown-toggler:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
 
+.dropdown-title {
+  color: #f1f1f1;
+  font-size: 12px;
+}
 
+/* css for modal box */
+.modal-box {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-left: 60px;
+}
+
+.modal-content {
+  background-color: rgb( 22, 22, 22);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  height: 40%;
+  border-radius: 5px;
+  color: rgb(22, 22, 22);
+}
+
+.modal-content-in {
+  padding:20px 10px;
+
+}
+
+/* The Close Button */
+.close-modal {
+  color:#f1f1f1;
+  font-size: 28px;
+  font-weight: bold;
+  float:right;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form {
+  padding: 10px 10px;
+}
+
+.custom-input input {
+  padding:10px;
+  border-radius:5px;
+  border: none;
+}
