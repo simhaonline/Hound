@@ -27,14 +27,16 @@ function SearchDashBoard() {
             <div className={"selector-containers"}>
                 <div className={"flex-row"}>
                     <div className={"flex-column-item"}>
-                        <select>
-                            <option value="Any-Type">Property type</option>
-                            <option value="house">House</option>
-                            <option value="apartment">Apartment & Unit</option>
-                            <option value="retirement">Retirement Living</option>
-                            <option value="holiday">Holiday house</option>
-                            <option value="studio">Studio</option>
-                        </select>
+                        <div className={"custom-select"}>
+                            <select>
+                                <option value="Any-Type">Property type</option>
+                                <option value="house">House</option>
+                                <option value="apartment">Apartment & Unit</option>
+                                <option value="retirement">Retirement Living</option>
+                                <option value="holiday">Holiday house</option>
+                                <option value="studio">Studio</option>
+                            </select>
+                        </div>
                     </div>
                     <div className={"flex-column-item"}>
                         <select>

@@ -8,7 +8,9 @@ import {
 const initialState = {
     userid:null,
     loading:false,
-    error:null
+    error:null,
+    token:undefined,
+    firstName:""
 }
 
 

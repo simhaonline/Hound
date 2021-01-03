@@ -9,7 +9,7 @@ import store from './Store'
 import Profile from './pages/Profile'
 import DashBoard from './pages/DashBoard'
 import 'react-toastify/dist/ReactToastify.css';
-// import Login from './pages/Login'
+import Login from './pages/Login'
 import Alert from './components/utils/Alert'
 import Chat from './pages/Chat'
 import './App.css'
@@ -23,16 +23,16 @@ function App() {
         SetWidth(60);
     }
     
-    const [auth,setAuth] = useState(false)
+    const [auth,setAuth] = useState(true)
   return (
     <Provider store={store}>
       <Alert/>
-        {/* {auth && 
+      {!auth && 
         <Router>
            <Route exact path='/' component={Login}/>
         </Router>
-        } */}    
-      <Router>
+      }
+      {auth && <Router>
         <Header  OpenSideBar={OpenSideBar} CloseBar={CloseBar}/>
         <div className='container'>
           <Sidebar CloseBar={CloseBar} width={width}/>
@@ -49,6 +49,7 @@ function App() {
           {/* </div> */}
         </div>
       </Router>
+      }
     </Provider>
   );
 }

@@ -82,3 +82,20 @@ button {
 input[type=text]:focus{
   outline: 2px solid black; 
 }
+
+
+/* Select css */
+
+
+.custom-select {
+    overflow: hidden;
+}
+
+
+
+/*the container must be positioned relative:*/
+.custom-select select {
+    box-shadow: none;
+}
+
+
