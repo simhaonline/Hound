@@ -3,7 +3,11 @@ import {Search} from 'react-feather'
 import ModalBox from '../utils/ModalBox'
 import Form from '../layout/Form'
 import Dropdown from '../utils/Dropdown';
-function SearchDashBoard() {
+import {connect} from 'react-redux';
+import mapDispatchToProps from '../../actions/searchActions'
+function SearchDashBoard({searchdash: {searchCat,searchInput}, setSearch,setCategory}) {
+    console.log("cat:",searchCat)
+    console.log("input:",searchInput)
     const [showModal, setShowModal] = useState(false)
     const [dropdownBed,setDropDownBed] = useState(undefined)
     return (
@@ -12,7 +16,7 @@ function SearchDashBoard() {
             <label >Search new property</label>
             <div className={"flex-row"}>
                 <div className={"flex-column-item"}>
-                    <input type={"text"} placeholder={" Start Searching .."}></input>
+                    <input type={"text"} placeholder={" Start Searching .."} onChange={(e) =>  setSearch(e.target.value)} ></input>
                 </div>
                 <div className={"flex-column-item"} style={{padding:"0px",margin:"0px", width:"10px",flex:"0",paddingRight:"40px",paddingTop:"5px", overflow:"hidden",flexShrink:"0"}}>
                     <Search/>
@@ -23,10 +27,10 @@ function SearchDashBoard() {
             <div className={"button-containers"}>
                 <ModalBox show={showModal} setShow={setShowModal} component={Form}/>
                 <button onClick={()=> setShowModal(true)} style={{"backgroundColor":"#f1f1f1"}}>Offer</button>
-                <button>Lease</button>
-                <button>Auction</button>
-                <button>Sell</button>
-                <button>Buy</button>
+                <button onClick={() => setCategory("Lease")}>Lease</button>
+                <button onClick={() => setCategory("Auction")}>Auction</button>
+                <button onClick={() => setCategory("Sell")}>Sell</button>
+                <button onClick={() => setCategory("Buy")}>Buy</button>
             </div>
         </div>
         <div className={"flex-row"}>
@@ -68,5 +72,7 @@ function SearchDashBoard() {
     </div>
     )
 }
-
-export default SearchDashBoard
+const mapStateToProps = state =>  ({
+    searchdash: state.searchdash
+})
+export default connect(mapStateToProps,mapDispatchToProps)(SearchDashBoard)

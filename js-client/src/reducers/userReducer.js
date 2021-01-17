@@ -18,10 +18,10 @@ export default (state = initialState,action) => {
     switch(action.type) {
         case GET_USER:
             return {
-            ...state,
-            userid:action.payload,
-            loading:false
-        }
+                ...state,
+                userid:action.payload,
+                loading:false
+            }
         case SET_LOADING:
             return  {...state,loading:true}
         case USER_ERROR:
