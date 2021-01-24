@@ -1,36 +1,73 @@
 import React, {useState} from 'react'
 import Dropdown from '../utils/Dropdown'
-
-function Form() {
-    const [banana,setBanana] = useState(undefined)
+import {connect} from 'react-redux';
+import mapDispatchToProps from '../../actions/searchActions'
+function Form({setSearchOptions}) {
+    const [formOptions,setFormOptions] = useState({
+        propType:"Any",
+        Beds:3,
+        priceMin:1000000,
+        PriceMax:2000000
+    })
+    console.log('form:',formOptions)
+    const {propType,Beds} = formOptions
     return (
-        <div className={"form"} style={{"marginTop":"20px"}}>
-            <div> 
+        <div className={"form"} style={{"paddingLeft":"10px"}}>
+            <div className={'flex-column-item'} style={{"paddingLeft":"10px"}}>
                 <Dropdown placeholder={"Property type"} 
-                    value={banana} 
-                    onChange={v => setBanana(v)}
-                    options={["house","apartment","retirement","holiday","studio"]} 
+                    value={propType} 
+                    onChange={v => setFormOptions({...formOptions,propType:v})}
+                    options={["Any","House","Apartment","Retirement","Holiday","Studio"]}
+        
                 />
+            </div>
+            <div className={'flex-column-item'} style={{"paddingLeft":"10px"}}>
                 <Dropdown placeholder={"Beds"} 
-                    value={banana} 
-                    onChange={v => setBanana(v)}
+                    value={Beds} 
+                    onChange={v => setFormOptions({...formOptions,Beds:v})}
                     options={["1","2","3","4","5","6","7","8","8+"]}
-                    title={"Property type"}            
+        
                 />
             </div>
-            <div>
-                
+    
+            <div className={'flex-row'}>
+                <div className={"custom-input"} style={{"paddingLeft":"0px", "padding":"10px"}}>
+                    <div className={"flex-column-item"}>
+                        <div>
+                            <label>{"Min price"}</label>
+                       </div>
+                        <input 
+                            type={"text"} 
+                            placeholder={"Min price"} 
+                            style={{"marginRight":"10px"}}
+                            onChange={e => {
+                                setFormOptions({...formOptions,priceMin:e.target.value})
+                            }}
+                            />
+                    </div>
+                    <div className={"flex-column-item"}>
+                        <div style={{"marginTop":"10px"}}>
+                            <label>{"Max price"}</label>
+                        </div>
+                    <input type={"text"} 
+                        placeholder={"Max price"} 
+                        
+                        onChange={e => {
+                            setFormOptions({...formOptions,priceMax:e.target.value})
+                        }}
+                        />
+                    </div>  
+                </div>
             </div>
-            <div className={"custom-input"} style={{"paddingLeft":"10px", "padding":"10px"}}>
-                <input type={"text"} placeholder={"Min price"} style={{"marginRight":"10px"}}/>
-                <input type={"text"} placeholder={"Max price"} style={{"marginTop":"10px"}}/>
-            </div>
-
-            <div className={"submit-button"} style={{"float":"right","paddingLeft":"10px"}}>
-                <button>Submit</button>
-            </div>
+            <div className={"submit-button"} style={{"float":"right"}}>
+                    <button onClick={v => setSearchOptions(formOptions)}>Submit</button>
+            </div>               
+            
         </div>
     )
 }
 
-export default Form
+const mapStateToProps = state =>  ({
+    searchdash: state.searchdash
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Form)

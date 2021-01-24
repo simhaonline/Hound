@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { listenMsg } from "../../websocket-client";
 
 const Dropdown = ({ value, options, placeholder = "Select", onChange }) => {
   const node = useRef();
@@ -28,6 +29,9 @@ const Dropdown = ({ value, options, placeholder = "Select", onChange }) => {
   }, []);
 
   return (<>
+    <div>
+      <label>{placeholder}</label>
+    </div>
     <div ref={node} className="dropdown arrow-up">
       <button className="dropdown-toggler" onClick={e => setOpen(!open)}>
         {value || placeholder}

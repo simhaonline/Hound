@@ -12,10 +12,10 @@ const initialState = {
     searchLoading:true,
     offerOptions:{},
     searchOptions: {
-        propType:"",
+        propType:"Any",
         Beds:3,
         priceMin:1000000,
-        PriceMax:2000000
+        priceMax:2000000
     }
 }
 

@@ -5,11 +5,11 @@ import Form from '../layout/Form'
 import Dropdown from '../utils/Dropdown';
 import {connect} from 'react-redux';
 import mapDispatchToProps from '../../actions/searchActions'
-function SearchDashBoard({searchdash: {searchCat,searchInput}, setSearch,setCategory}) {
+function SearchDashBoard({searchdash: {searchCat,searchInput,searchOptions}, setSearch,setCategory,setSearchOptions}) {
     console.log("cat:",searchCat)
     console.log("input:",searchInput)
-    const [showModal, setShowModal] = useState(false)
-    const [dropdownBed,setDropDownBed] = useState(undefined)
+    const {propType,Beds,priceMin,priceMax} = searchOptions
+    const [showModal,setShowModal] = useState(false)
     return (
     <div className={"search-container"}>
         <div className={"search-input"}>
@@ -37,34 +37,36 @@ function SearchDashBoard({searchdash: {searchCat,searchInput}, setSearch,setCate
             <div className={"selector-containers"}>
                 <div className={"flex-row"}>
                     <div className={"flex-column-item"}>
-                        <div className={"custom-select"}>
-                            <select>
-                                <option value="Any-Type" style={{"color":"red"}}>Property type</option>
-                                <option value="house">House</option>
-                                <option value="apartment">Apartment & Unit</option>
-                                <option value="retirement">Retirement Living</option>
-                                <option value="holiday">Holiday house</option>
-                                <option value="studio">Studio</option>
-                            </select>
-                        </div>
+                        <Dropdown placeholder={"Property type"} 
+                            value={propType} 
+                            onChange={v => setSearchOptions({...searchOptions,propType:v})}
+                            options={["Any","House","Apartment","Retirement","Holiday","Studio"]}
+                            title={"Property type"}            
+                        />
                     </div>
                     <div className={"flex-column-item"}>
                     <Dropdown placeholder={"Beds"} 
-                        value={dropdownBed} 
-                        onChange={v => setDropDownBed(v)}
+                        value={Beds} 
+                        onChange={v => setSearchOptions({...searchOptions,Beds:v})}
                         options={["1","2","3","4","5","6","7","8","8+"]}
-                        title={"Property type"}            
+                        title={"Beds"}            
                     />
                     </div>
                     <div className={"flex-column-item"}>
-                        <select>
-                            <option value="Any-Price-Min">Price (Min)</option>
-                        </select>
+                        <Dropdown placeholder={"Price (Min)"} 
+                            value={priceMin} 
+                            onChange={v => setSearchOptions({...searchOptions,priceMin:v})}
+                            options={["300,000","500,000","1,000,000","1,500,000","2,000,000","3,000,000+"]}
+                            title={"Price Min"}            
+                        />
                     </div>
                     <div className={"flex-column-item"}>
-                        <select>
-                            <option value="Any-Price-Max">Price (Max)</option>
-                        </select>
+                        <Dropdown placeholder={"Price (Max)"} 
+                                value={priceMax} 
+                                onChange={v => setSearchOptions({...searchOptions,priceMax:v})}
+                                options={["300,000","500,000","1,000,000","1,500,000","2,000,000","3,000,000+"]}
+                                title={"Price Max"}            
+                            />
                     </div>
                 </div>
             </div>
