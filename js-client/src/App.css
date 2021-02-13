@@ -261,8 +261,6 @@ body::-webkit-scrollbar-thumb {
 }
 .profile-pic-icon img {
   border-radius: 50%;
-  width:20px;
-  height:20px;
 }
 
 .profile-pic-icon span {
