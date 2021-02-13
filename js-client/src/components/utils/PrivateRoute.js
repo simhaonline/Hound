@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { connect } from "react-redux";
+import { Route, Redirect,withRouter } from 'react-router-dom';
 
-function PrivateRoute({ component: Component, roles, ...rest }) {
+function PrivateRoute({ component: Component,auth:{isAuth = false},...rest }) {
     return (
         <Route {...rest} render={props => {
-            if (!localStorage.getItem('user')) {
+            if (!isAuth) {
                 // not logged in so redirect to login page with the return url
                 return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
             }
@@ -14,5 +15,5 @@ function PrivateRoute({ component: Component, roles, ...rest }) {
         }} />
     );
 }
-
-export { PrivateRoute };
+const mapStateToProps = state => ({ auth: state.auth });
+export default withRouter(connect(mapStateToProps)(PrivateRoute));

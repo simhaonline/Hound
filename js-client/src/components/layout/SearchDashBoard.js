@@ -6,8 +6,6 @@ import Dropdown from '../utils/Dropdown';
 import {connect} from 'react-redux';
 import mapDispatchToProps from '../../actions/searchActions'
 function SearchDashBoard({searchdash: {searchCat,searchInput,searchOptions}, setSearch,setCategory,setSearchOptions}) {
-    console.log("cat:",searchCat)
-    console.log("input:",searchInput)
     const {propType,Beds,priceMin,priceMax} = searchOptions
     const [showModal,setShowModal] = useState(false)
     return (

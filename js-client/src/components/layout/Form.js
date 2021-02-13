@@ -7,7 +7,7 @@ function Form({setSearchOptions}) {
         propType:"Any",
         Beds:3,
         priceMin:1000000,
-        PriceMax:2000000
+        priceMax:2000000
     })
     console.log('form:',formOptions)
     const {propType,Beds} = formOptions
@@ -60,7 +60,7 @@ function Form({setSearchOptions}) {
                 </div>
             </div>
             <div className={"submit-button"} style={{"float":"right"}}>
-                    <button onClick={v => setSearchOptions(formOptions)}>Submit</button>
+                <button onClick={v => setSearchOptions(formOptions)}>Submit</button>
             </div>               
             
         </div>

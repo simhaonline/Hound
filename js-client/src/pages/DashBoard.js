@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import '../CSS/dashboard.css'
+import HouseCard from '../components/utils/HouseCard'
 // import {Search} from 'react-feather'
 import SearchDashBoard from '../components/layout/SearchDashBoard'
 function DashBoard() {
@@ -14,9 +15,7 @@ function DashBoard() {
             </div>
             <div className={"flex-column middle"} style={{backgroundColor:"#white"}}>
                 <SearchDashBoard/>
-                <div className={"property-listing-container"}>
-
-                </div>
+                <HouseCard/>
             </div>
             <div className={"flex-column side"} style={{backgroundColor:"white"}}>
                 <div className={"feeds-container"}>

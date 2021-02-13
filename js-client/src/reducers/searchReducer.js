@@ -14,8 +14,8 @@ const initialState = {
     searchOptions: {
         propType:"Any",
         Beds:3,
-        priceMin:1000000,
-        priceMax:2000000
+        priceMin:"1,000,000",
+        priceMax:"2,000,000"
     }
 }
 

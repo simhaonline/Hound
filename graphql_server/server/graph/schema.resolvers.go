@@ -16,6 +16,7 @@ import (
 )
 
 func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastName *string, password *string, email *string) (*model.Status, error) {
+	fmt.Println("hits signup!")
 	var status model.Status
 
 	emailResults, err := r.Conn.Query("SELECT email FROM users WHERE email = $1", *email)
@@ -52,7 +53,7 @@ func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastNa
 }
 
 func (r *mutationResolver) Login(ctx context.Context, email *string, password *string) (*model.User, error) {
-
+	fmt.Println("Login hit!")
 	passwordResult, err := r.Conn.Query("SELECT u_id,first_name,last_name,hash_password FROM users WHERE email = $1", *email)
 
 	// Validate the user

@@ -41,6 +41,7 @@ func main() {
 	r.HandleFunc("/query", srv.ServeHTTP)
 
 	// Run
+	fmt.Println("Running server on port 8080")
 	http.ListenAndServe(":8080", r)
-	fmt.Println("Running server")
+
 }

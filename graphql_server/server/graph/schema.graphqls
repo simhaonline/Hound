@@ -1,6 +1,3 @@
-# GraphQL schema example
-#
-# https://gqlgen.com/getting-started/
 
 enum Status{
   SUCCESS
@@ -13,16 +10,35 @@ type User {
   lastName: String!
   email: String!
   token: String!
+  interests: Interests!
+}
+
+type Interests {
+  buying: Bool!
+  selling: Bool!
+}
+
+type House {
+  user: User!
+  price: Float!
+  rooms: Int!
+  bathrooms: Int!
+  areasqm:Int!
+  address:String!
 }
 
 type Query {
   users: [User!]!
+  houses: [House!]!
 }
 
 scalar Void 
 
 type Mutation {
+  # auth user
   signUp(firstName:String,lastName: String, password:String,email:String): Status
   login(email: String, password: String): User
   logout(token:String): Status
+  # house offers
+  createHouseOffer(token: String!,price:Float,rooms:Int,bathrooms:Int,areasqm:Int,address:String) Status
 }
