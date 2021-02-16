@@ -13,11 +13,11 @@ function Profile() {
                     <table>
                         <tr>
                             <th>First Name</th>
-                            <th>Mr Timmy</th>
+                            <th>Tom</th>
                         </tr>
                         <tr>
                             <td>Last Name</td>
-                            <td>Turner</td>
+                            <td>Cruise</td>
 
                         </tr>
                         <tr>
