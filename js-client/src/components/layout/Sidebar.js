@@ -14,7 +14,7 @@ const Sidebar = ({width,CloseBar}) => {
                 <Fragment>
                     <a className={"closebtn"} onClick={CloseBar} style={{borderBottom:"none"}}>x</a>
                     <span className="photon" style={{color:"white" ,fontSize:"30px", paddingLeft:"10px"}}>Photon</span>
-                    <Link to='/app/explore/market' className='hover-link'>Explore Market</Link>
+                    <Link to='/app/dash' className='hover-link'>Explore Market</Link>
                 </Fragment>)}
                 {width <= 80 && (<Fragment>
                     <div className='icon-sidebar-background' tabIndex="1">
