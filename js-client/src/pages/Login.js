@@ -41,9 +41,9 @@ const Login = ({auth:{isAuth},setLogin,setAuthUser}) => {
 	}
     return ( <>
 	<div className={"login-container"}>
-		<div className={"hound"}>
+		<div className={"hound-login"}>
             <h1>
-              <span className="photon"> <img src={DogIcon} />Hound</span>
+              <span> <img src={DogIcon} />Hound</span>
             </h1>
 		</div>
 		<div className={"login"}>

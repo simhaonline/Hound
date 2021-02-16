@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 
-.hound {
+.hound-login {
 	padding-top: 100px;
 	align-items: center;
 	text-align: center;
@@ -10,7 +10,7 @@
 
 }
 
-.hound img {
+.hound-login img {
 	width: 60px;
 	height: 60px;
 }

@@ -19,7 +19,7 @@ const Header = ({OpenSideBar}) => {
       <div className="navbar" >
         <div className="logo">
           <div className="opn-button"><button className={'openbtn'} onClick={OpenSideBar}> ☰ </button></div>
-          <div className="hound-login">
+          <div className="hound">
             <h1>
               <span className="photon"> <img src={DogIcon} style={{"width":"40px","height":"40px"}}/>Hound</span>
             </h1>

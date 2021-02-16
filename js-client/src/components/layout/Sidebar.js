@@ -27,7 +27,7 @@ const Sidebar = ({width,CloseBar}) => {
                         <Link to='/app/search/market'><Map className='icon-sidebar'/></Link>
                     </div>
                     <div className='icon-sidebar-background' tabIndex="4">
-                        <Link to='/app/network/market'><Compass className='icon-sidebar'/></Link>
+                        <Link to='/app/networkmarket'><Compass className='icon-sidebar'/></Link>
                     </div>
                 </Fragment>)}
             </div>
