@@ -4,7 +4,8 @@ import AtomSpinner from '../components/utils/AtomSpinner'
 import '../CSS/loginregister.css'
 import {graphqlLogin,graphqlSignUp} from '../graphql_client/graphqlAuth'
 import {setAuthUser, setLogin} from '../actions/authActions';
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
+import DogIcon from '../icons/dog-logo.svg' 
 const Login = ({auth:{isAuth},setLogin,setAuthUser}) => {
 	const [signup,setSignUp] = useState(false)
 	const swapForm = () => setSignUp(!signup)
@@ -40,8 +41,10 @@ const Login = ({auth:{isAuth},setLogin,setAuthUser}) => {
 	}
     return ( <>
 	<div className={"login-container"}>
-		<div className={"spinner-top"}>
-			<AtomSpinner/>
+		<div className={"hound"}>
+            <h1>
+              <span className="photon"> <img src={DogIcon} />Hound</span>
+            </h1>
 		</div>
 		<div className={"login"}>
 			<div className={"container" + getForm()}  id="container" >

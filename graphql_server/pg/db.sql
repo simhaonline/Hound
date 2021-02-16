@@ -40,6 +40,7 @@ create table if not exists House(
     rooms integer,
     bathrooms integer,
     areaasqm integer,
+    garage integer
     address varchar(50),
     foreign key (user_id) references Users(u_id)
 );
@@ -52,7 +53,7 @@ INSERT INTO UsersSessions values (2,'randomtokengen3',current_timestamp);
 INSERT INTO UsersSessions values (2,'randomtokengen4',current_timestamp);
 INSERT INTO Interests(user_id,buying,selling) values (1,TRUE,TRUE);
 INSERT INTO Interests(user_id,buying,selling) values (2,TRUE,TRUE);
-INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,address) values (2,12345000000.123,3,2,1000,'Point Piper');
-INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,address) values (2,500000000.123,3,2,231,'Parramatta');
-INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,address) values (1,2.123,1,1,50,'Kensington');
-INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,address) values (1,300000,2,1,100,'Chatswood');
+INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,garage,address) values (2,12345000000.123,3,2,1000,5,'Point Piper');
+INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,garage,address) values (2,500000000.123,3,2,231,2,'Parramatta');
+INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,garage,address) values (1,2.123,1,1,50,0,'Kensington');
+INSERT INTO House(user_id,price,rooms,bathrooms,areaasqm,garage,address) values (1,300000,2,1,100,1,'Chatswood');
