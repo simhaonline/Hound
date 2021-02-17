@@ -13,7 +13,7 @@ const Sidebar = ({width,CloseBar}) => {
                 {width > 80 && (
                 <Fragment>
                     <a className={"closebtn"} onClick={CloseBar} style={{borderBottom:"none"}}>x</a>
-                    <span className="photon" style={{color:"white" ,fontSize:"30px", paddingLeft:"10px"}}>Photon</span>
+                    <span className="photon" style={{color:"white" ,fontSize:"30px", paddingLeft:"10px"}}>Hound</span>
                     <Link to='/app/dash' className='hover-link'>Explore Market</Link>
                 </Fragment>)}
                 {width <= 80 && (<Fragment>
