@@ -1,14 +1,14 @@
-language: node_js 
-sudo: required
+# language: node_js 
+# sudo: required
 
-services:
-  - docker
-git:
-  symlinks: true
-before_install:
-  - docker build -t lukajose/photon -f Dockerfile.dev .
-script:
-  - docker run -e CI=true lukajose/photon npm run test
+# services:
+#   - docker
+# git:
+#   symlinks: true
+# before_install:
+#   - docker build -t lukajose/photon -f Dockerfile.dev .
+# script:
+#   - docker run -e CI=true lukajose/photon npm run test
 # deploy:  
 #   provider: elasticbeanstalk
 #   region: "us-west-2"
