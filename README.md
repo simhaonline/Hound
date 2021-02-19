@@ -39,8 +39,7 @@ npm start
 ```
 Now you can access your react app in port 3000.
 
-Now, there is one last thing you need to do, that is run the graphql server that is currently used for authentification
-.This server will contain all the backend logic in the future.
+Now, there is one last thing you need to do, that is run the graphql server that is currently used for authentification.This server will contain all the backend logic in the future.
 
 From the root directory of the repository do the following:
 
