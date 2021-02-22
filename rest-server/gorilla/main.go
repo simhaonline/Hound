@@ -36,7 +36,7 @@ package main
 
 import (
 	"fmt"
-	"github/lukajose/Photon/rest-server/gorilla/websocket"
+	"github/lukajose/Hound/rest-server/gorilla/websocket"
 	"net/http"
 	"strconv"
 )
