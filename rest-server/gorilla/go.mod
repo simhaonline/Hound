@@ -1,4 +1,4 @@
-module github/lukajose/Photon/rest-server/gorilla
+module github/lukajose/Hound/rest-server/gorilla
 
 go 1.15
 

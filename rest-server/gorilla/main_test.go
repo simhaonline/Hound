@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github/lukajose/Photon/rest-server/gorilla/server"
+	"github/lukajose/Hound/rest-server/gorilla/server"
 	"log"
 	"os"
 	"testing"
