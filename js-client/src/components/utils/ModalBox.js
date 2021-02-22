@@ -6,8 +6,8 @@ function ModalBox({component:Component,show = false,setShow}) {
     const closeModal = () => setShow(false)
 
     return (
-        <div className={"modal-box"} style={{"display":displayStyle}}>
-            <div className={"modal-content"} >
+        <div className={"modal-box"} style={{"display":displayStyle }}>
+            <div className={"modal-content" }>
                 <span onClick={closeModal} className={"close-modal"}>&times;</span>
                 <div className={"modal-content-in"}><Component/></div>
             </div>
