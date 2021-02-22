@@ -15,6 +15,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// Register for the platform
 func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastName *string, password *string, email *string) (*model.Status, error) {
 	fmt.Println("hits signup!")
 	var status model.Status
@@ -26,22 +27,31 @@ func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastNa
 
 	defer emailResults.Close()
 
+	// Check that there are no emails that match
 	if emailResults.Next() {
 		status = model.StatusFailed
 		return &status, errors.New("Email is already registered")
 	}
 
+	// Hash the password and store
 	bytes, err := bcrypt.GenerateFromPassword([]byte(*password), 14)
 	hashedPassword := string(bytes)
 	if err != nil {
 		status = model.StatusFailed
 		return &status, errors.New("Failed to generated hashed password")
 	}
+	fmt.Println("Here!")
+	newUserSQL := `
+		INSERT INTO users 
+			( first_name, 
+				last_name,
+				email,
+				hashed_password,
+				time_registered
+			) 
+			VALUES ($1,$2,$3,$4,$5);`
 
-	newUserSQL := `INSERT INTO users (first_name, last_name,email,hash_password,perm_type,time_registered) 
-							   VALUES ($1,$2,$3,$4,$5, $6)`
-
-	_, err = r.Conn.Exec(newUserSQL, *firstName, *lastName, *email, hashedPassword, 1, time.Now())
+	_, err = r.Conn.Exec(newUserSQL, *firstName, *lastName, *email, hashedPassword, time.Now())
 
 	if err != nil {
 		status = model.StatusFailed
@@ -54,21 +64,25 @@ func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastNa
 
 func (r *mutationResolver) Login(ctx context.Context, email *string, password *string) (*model.User, error) {
 	fmt.Println("Login hit!")
-	passwordResult, err := r.Conn.Query("SELECT u_id,first_name,last_name,hash_password FROM users WHERE email = $1", *email)
+	passwordResult, err := r.Conn.Query(`
+		SELECT id,first_name,last_name,hashed_password 
+		FROM users 
+		WHERE email = $1`, *email)
 
 	// Validate the user
 	if !passwordResult.Next() {
 		return nil, errors.New("User with email does not exist")
 	}
-	var uid int
+
+	var userId int
 	var firstName string
 	var lastName string
 	var hashedPassword string
 
-	if err := passwordResult.Scan(&uid, &firstName, &lastName, &hashedPassword); err != nil {
+	if err := passwordResult.Scan(&userId, &firstName, &lastName, &hashedPassword); err != nil {
 		return nil, err
 	}
-
+	// Verify the password
 	err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(*password))
 	if err != nil {
 		return nil, errors.New("Incorrect password")
@@ -80,9 +94,10 @@ func (r *mutationResolver) Login(ctx context.Context, email *string, password *s
 		return nil, errors.New("Failed to generate token")
 	}
 
-	newSessionSQL := `INSERT INTO userssessions (u_id, tokens,token_issue) 
+	// Create a session for the user
+	newSessionSQL := `INSERT INTO Sessions(id, access_token,token_issued) 
 										VALUES ($1,$2,$3)`
-	_, err = r.Conn.Exec(newSessionSQL, uid, token, time.Now())
+	_, err = r.Conn.Exec(newSessionSQL, userId, token, time.Now())
 	if err != nil {
 		return nil, errors.New("Failed to create session")
 	}
