@@ -1,8 +1,5 @@
 version: '3'
 
-volumes:
-  database:
-
 services:
   postgres:
     image: 'postgres:latest'
@@ -90,6 +87,7 @@ services:
     networks:
       - odfe-net
 volumes:
+  database:
   odfe-data1:
   odfe-data2:
 networks:
