@@ -53,7 +53,7 @@ You should now be ready to go and continue building !.
 
 
 
-## Accessing the database (optional)
+## Accessing Postgres database (optional)
 
 
 Note: If you are familiar with relational databases you can access the postgres database by doing:
@@ -69,4 +69,11 @@ select * from users;
 select * from house;
 ```
 
+# Accesing elastic search db
+
+Once the containers are up you can access kibana UI to interact with the elastic search engine on http://localhost:5601.
+
+The official documentation for elastic search and elastic search opendistro can be found here:
+ - https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+ - https://opendistro.github.io/for-elasticsearch-docs/
 
