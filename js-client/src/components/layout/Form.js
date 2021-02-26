@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Dropdown from '../utils/Dropdown'
 import {connect} from 'react-redux';
 import mapDispatchToProps from '../../actions/searchActions'
+import UploadPic from '../aws/UploadPic'
 function Form({setSearchOptions}) {
     const [formOptions,setFormOptions] = useState({
         propType:"Any",
@@ -30,7 +31,7 @@ function Form({setSearchOptions}) {
                 />
             </div>
     
-            <div className={'flex-row'}>
+            <div className={'row'}>
                 <div className={"custom-input"} style={{"paddingLeft":"0px", "padding":"10px"}}>
                     <div className={"flex-column-item"}>
                         <div>
@@ -59,9 +60,13 @@ function Form({setSearchOptions}) {
                     </div>  
                 </div>
             </div>
-            <div className={"submit-button"} style={{"float":"right"}}>
-                <button onClick={v => setSearchOptions(formOptions)}>Submit</button>
-            </div>               
+            <UploadPic/>
+            <div className={"flex-column-item"}>
+                <div >
+                    <button onClick={v => setSearchOptions(formOptions)}>Submit</button>
+                </div>  
+            </div>
+                         
             
         </div>
     )

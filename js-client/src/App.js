@@ -11,7 +11,7 @@ import LoginRoute from './components/utils/LoginRoute'
 import './App.css'
 import { connect } from 'react-redux';
 import AppPrivate from './components/layout/AppPrivate';
-
+console.log(process.env.REACT_APP_CLIENT_ID);
 function App() {  
   return (
     <Provider store={store}>
