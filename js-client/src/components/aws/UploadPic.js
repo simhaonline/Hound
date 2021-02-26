@@ -18,8 +18,8 @@ function UploadPic() {
         })
     }
     return (
-    <div >
-        <h1>Upload Image</h1>
+    <div style={{paddingLeft:"10px"}}>
+        <h3>Upload Image</h3>
         <input type="file" onChange={upload} className={"custom-file-input"}/>
     </div>)
 }

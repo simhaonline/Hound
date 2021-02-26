@@ -255,6 +255,10 @@ body::-webkit-scrollbar-thumb {
   border: none;
 }
 
+.custom-input {
+  display:flex;
+}
+
 
 .profile-pic-icon {
   display: inline-block;
