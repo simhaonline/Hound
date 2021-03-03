@@ -1,4 +1,4 @@
-module github.com/ConDai/simpleGraphQL
+module github.com/ConDai/gqlServer
 
 go 1.15
 

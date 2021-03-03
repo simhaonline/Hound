@@ -8,8 +8,8 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/ConDai/simpleGraphQL/graph"
-	"github.com/ConDai/simpleGraphQL/graph/generated"
+	"github.com/ConDai/gqlServer/graph"
+	"github.com/ConDai/gqlServer/graph/generated"
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 )

@@ -8,11 +8,108 @@ import (
 	"strconv"
 )
 
+type Auction interface {
+	IsAuction()
+}
+
+type Bid struct {
+	Bidder *User  `json:"bidder"`
+	Amount int    `json:"amount"`
+	Time   string `json:"time"`
+}
+
+type ClosedAuction struct {
+	Property  *Property `json:"property"`
+	Bids      []*Bid    `json:"bids"`
+	StartTime string    `json:"start_time"`
+	EndTime   string    `json:"end_time"`
+}
+
+func (ClosedAuction) IsAuction() {}
+
+type Location struct {
+	Address string `json:"address"`
+	Lat     int    `json:"lat"`
+	Long    int    `json:"long"`
+}
+
+type OpenAuction struct {
+	Property  *Property `json:"property"`
+	Bids      []*Bid    `json:"bids"`
+	StartTime string    `json:"start_time"`
+	EndTime   string    `json:"end_time"`
+}
+
+func (OpenAuction) IsAuction() {}
+
+type Property struct {
+	Seller       *User       `json:"seller"`
+	SellType     SellingType `json:"sellType"`
+	PropertyType []string    `json:"propertyType"`
+	Description  string      `json:"description"`
+	PhotosURL    []string    `json:"photos_url"`
+	Location     *Location   `json:"location"`
+	Rooms        int         `json:"rooms"`
+	Bathrooms    int         `json:"bathrooms"`
+	Area         int         `json:"area"`
+	Garage       int         `json:"garage"`
+	Sold         *bool       `json:"sold"`
+}
+
+type ScheduledAuction struct {
+	Property  *Property `json:"property"`
+	MinPrice  int       `json:"min_price"`
+	StartTime string    `json:"start_time"`
+	EndTime   string    `json:"end_time"`
+}
+
+func (ScheduledAuction) IsAuction() {}
+
 type User struct {
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
 	Email     string `json:"email"`
-	Token     string `json:"token"`
+}
+
+type SellingType string
+
+const (
+	SellingTypeAuctionedProperty SellingType = "AuctionedProperty"
+	SellingTypeListingProperty   SellingType = "ListingProperty"
+)
+
+var AllSellingType = []SellingType{
+	SellingTypeAuctionedProperty,
+	SellingTypeListingProperty,
+}
+
+func (e SellingType) IsValid() bool {
+	switch e {
+	case SellingTypeAuctionedProperty, SellingTypeListingProperty:
+		return true
+	}
+	return false
+}
+
+func (e SellingType) String() string {
+	return string(e)
+}
+
+func (e *SellingType) UnmarshalGQL(v interface{}) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = SellingType(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid SellingType", str)
+	}
+	return nil
+}
+
+func (e SellingType) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
 type Status string

@@ -1,4 +1,3 @@
-
 enum Status{
   SUCCESS
   FAILED
@@ -7,38 +6,78 @@ enum Status{
 # Same as specified in rest server
 type User {
   firstName: String!
-  lastName: String!
-  email: String!
-  token: String!
-  interests: Interests!
+  lastName:  String!
+  email:     String!
 }
 
-type Interests {
-  buying: Bool!
-  selling: Bool!
+# Postgres date time
+
+scalar DateTime
+
+union Auction = ScheduledAuction | OpenAuction | ClosedAuction
+
+type ScheduledAuction{
+  property:   Property!
+  min_price:  Int!
+  start_time: DateTime!
+  end_time:   DateTime!
 }
 
-type House {
-  user: User!
-  price: Float!
+type OpenAuction {
+  property:   Property!
+  bids:       [Bid!]!
+  start_time: DateTime!
+  end_time:   DateTime!
+}
+
+type ClosedAuction {
+  property:   Property!
+  bids:       [Bid!]!
+  start_time: DateTime!
+  end_time:   DateTime!
+}
+
+type Bid {
+  bidder: User!
+  amount: Int!
+  time:   DateTime!
+}
+
+enum SellingType {
+  AuctionedProperty
+  ListingProperty
+}
+
+
+type Property {
+  seller: User!
+  sellType: SellingType!
+  propertyType: [String!]!
+  description: String!
+  photos_url:[String!]! # Multiples photos in each bucket
+  location: Location!
   rooms: Int!
   bathrooms: Int!
-  areasqm:Int!
-  address:String!
+  area: Int!
+  garage: Int!
+  sold: Boolean
 }
 
+type Location {
+  address: String!
+  lat: Int!
+  long: Int!
+}
 type Query {
-  users: [User!]!
-  houses: [House!]!
+  #users:      [User!]!
+  properties: [Property!]!
 }
-
-scalar Void 
 
 type Mutation {
   # auth user
   signUp(firstName:String,lastName: String, password:String,email:String): Status
-  login(email: String, password: String): User
+  login(email: String, password: String): ID
   logout(token:String): Status
-  # house offers
-  createHouseOffer(token: String!,price:Float,rooms:Int,bathrooms:Int,areasqm:Int,address:String) Status
+  # # house offers
+  # createHouseOffer(token: String!,price:Float,rooms:Int,bathrooms:Int,areasqm:Int,address:String): Status
 }

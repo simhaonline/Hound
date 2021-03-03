@@ -9,13 +9,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ConDai/simpleGraphQL/graph/generated"
-	"github.com/ConDai/simpleGraphQL/graph/model"
+	generated1 "github.com/ConDai/gqlServer/graph/generated"
+	"github.com/ConDai/gqlServer/graph/model"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
-// Register for the platform
 func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastName *string, password *string, email *string) (*model.Status, error) {
 	fmt.Println("hits signup!")
 	var status model.Status
@@ -62,7 +61,7 @@ func (r *mutationResolver) SignUp(ctx context.Context, firstName *string, lastNa
 	return &status, nil
 }
 
-func (r *mutationResolver) Login(ctx context.Context, email *string, password *string) (*model.User, error) {
+func (r *mutationResolver) Login(ctx context.Context, email *string, password *string) (*string, error) {
 	fmt.Println("Login hit!")
 	passwordResult, err := r.Conn.Query(`
 		SELECT id,first_name,last_name,hashed_password 
@@ -101,14 +100,8 @@ func (r *mutationResolver) Login(ctx context.Context, email *string, password *s
 	if err != nil {
 		return nil, errors.New("Failed to create session")
 	}
-
-	user := model.User{
-		FirstName: firstName,
-		LastName:  lastName,
-		Email:     *email,
-		Token:     token.String(),
-	}
-	return &user, nil
+	tokenString := token.String()
+	return &tokenString, nil
 }
 
 func (r *mutationResolver) Logout(ctx context.Context, token *string) (*model.Status, error) {
@@ -133,11 +126,25 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 	return users, nil
 }
 
-// Mutation returns generated.MutationResolver implementation.
-func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
+func (r *queryResolver) Properties(ctx context.Context) ([]*model.Property, error) {
 
-// Query returns generated.QueryResolver implementation.
-func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
+	user := model.User{
+		FirstName: "luka",
+		LastName:  "Gam",
+		Email:     "fuck you",
+	}
+
+	var property model.Property
+	property.Seller = &user
+	properties := []*model.Property{&property}
+	return properties, nil
+}
+
+// Mutation returns generated1.MutationResolver implementation.
+func (r *Resolver) Mutation() generated1.MutationResolver { return &mutationResolver{r} }
+
+// Query returns generated1.QueryResolver implementation.
+func (r *Resolver) Query() generated1.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
