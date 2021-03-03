@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Dropdown from '../utils/Dropdown'
 import {connect} from 'react-redux';
 import mapDispatchToProps from '../../actions/searchActions'
+import UploadPic from '../aws/UploadPic'
 function Form({setSearchOptions}) {
     const [formOptions,setFormOptions] = useState({
         propType:"Any",
@@ -29,8 +30,8 @@ function Form({setSearchOptions}) {
         
                 />
             </div>
-    
-            <div className={'flex-row'}>
+            <div className={"break"}></div>
+            <div className={'row'}>
                 <div className={"custom-input"} style={{"paddingLeft":"0px", "padding":"10px"}}>
                     <div className={"flex-column-item"}>
                         <div>
@@ -46,7 +47,7 @@ function Form({setSearchOptions}) {
                             />
                     </div>
                     <div className={"flex-column-item"}>
-                        <div style={{"marginTop":"10px"}}>
+                        <div>
                             <label>{"Max price"}</label>
                         </div>
                     <input type={"text"} 
@@ -59,9 +60,15 @@ function Form({setSearchOptions}) {
                     </div>  
                 </div>
             </div>
-            <div className={"submit-button"} style={{"float":"right"}}>
-                <button onClick={v => setSearchOptions(formOptions)}>Submit</button>
-            </div>               
+            <div className={"break"}></div>
+            <UploadPic/>
+            <div className={"break"}></div>
+            <div className={"flex-column-item"}>
+                <div className={"submit"}>
+                    <button onClick={v => setSearchOptions(formOptions)}>Submit</button>
+                </div>  
+            </div>
+                         
             
         </div>
     )

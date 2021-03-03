@@ -16,7 +16,7 @@ const setLogin = (email,password) => async dispatch => {
             type:AUTH_LOGIN,
             payload:{...data.login}
         })
-        alertSuccess("Welcome to photon!");
+        alertSuccess("Welcome to Hound!");
     } catch(e) {
         alertError("Invalid email or password");
     }

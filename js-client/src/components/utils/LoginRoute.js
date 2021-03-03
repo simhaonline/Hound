@@ -6,7 +6,8 @@ function LoginRoute({ component: Component,auth:{isAuth = false},...rest }) {
     return (
         <Route {...rest} render={props => {
             if (isAuth) {
-                // not logged in so redirect to login page with the return url
+                // redirect to existing page
+                console.log('current path',window.location.pathname)
                 return <Redirect to={{ pathname: '/app', state: { from: props.location } }} />
             }
 
