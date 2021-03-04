@@ -1,0 +1,84 @@
+json.NewEncoder encoded query: &{{"query": {"match_all" : {}},"size": 2} 0 -1} 
+
+We got raw data!
+{
+    "_shards": {
+        "failed": 0,
+        "skipped": 0,
+        "successful": 1,
+        "total": 1
+    },
+    "hits": {
+        "hits": [
+            {
+                "_id": "Z8PB-3cBlm4IqRJoqKkg",
+                "_index": "hound-aus",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2021-03-04T05:41:47.852Z",
+                    "@version": "1",
+                    "area": 1476.349109128515,
+                    "bathrooms": 3,
+                    "email": "luka@gmail.com",
+                    "firstName": "Luka",
+                    "garage": 3,
+                    "host": "c1459b05e1c6",
+                    "lastName": "Gamulin",
+                    "location": {
+                        "lat": -22.053959526308304,
+                        "lon": 143.53532979955287
+                    },
+                    "median_income": 31980,
+                    "path": "/usr/share/logstash/data-ingest/samplePropDataBatch0.json",
+                    "population": 183,
+                    "postcode": 4733,
+                    "rooms": 5,
+                    "sellType": "ListingProperty",
+                    "sold": false,
+                    "state": "QLD",
+                    "suburb": "Corfield",
+                    "uid": 1
+                },
+                "_type": "_doc"
+            },
+            {
+                "_id": "aMPB-3cBlm4IqRJoqKkg",
+                "_index": "hound-aus",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2021-03-04T05:41:47.852Z",
+                    "@version": "1",
+                    "area": 1180.503509962548,
+                    "bathrooms": 3,
+                    "email": "daigo@gmail.com",
+                    "firstName": "Daigo",
+                    "garage": 3,
+                    "host": "c1459b05e1c6",
+                    "lastName": "Colan",
+                    "location": {
+                        "lat": -33.896239605335516,
+                        "lon": 150.97657922638618
+                    },
+                    "median_income": 27924,
+                    "path": "/usr/share/logstash/data-ingest/samplePropDataBatch0.json",
+                    "population": 17,
+                    "postcode": 2163,
+                    "rooms": 1,
+                    "sellType": "ListingProperty",
+                    "sold": false,
+                    "state": "NSW",
+                    "suburb": "Lansdowne",
+                    "uid": 2
+                },
+                "_type": "_doc"
+            }
+        ],
+        "max_score": 1,
+        "total": {
+            "relation": "eq",
+            "value": 100008
+        }
+    },
+    "timed_out": false,
+    "took": 2
+}

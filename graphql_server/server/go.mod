@@ -10,4 +10,5 @@ require (
 	github.com/satori/go.uuid v1.2.1-0.20181028125025-b2ce2384e17b
 	github.com/vektah/gqlparser/v2 v2.1.0
 	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550
+	github.com/elastic/go-elasticsearch/v8 v8.0.0-20210222130227-c653ef6811d2
 )

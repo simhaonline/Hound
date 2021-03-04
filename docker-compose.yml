@@ -101,7 +101,7 @@ services:
     #   - LS_OPEN_FILES=21000
     volumes:
       - './logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf'
-      - '../PropData:/usr/share/logstash/data-ingest'
+      - './logstash/propdata:/usr/share/logstash/data-ingest'
     networks:
       - odfe-net
 volumes:
